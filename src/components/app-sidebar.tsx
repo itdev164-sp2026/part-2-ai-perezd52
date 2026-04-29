@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { ChevronRight, FolderOpen, Home, Settings } from "lucide-react";
+import { FolderOpen, Home, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -75,15 +75,8 @@ export function AppSidebar({ children }: AppSidebarProps) {
 
         <SidebarInset className="min-h-full w-full bg-background">
           <div className="border-b border-border bg-background/90 px-4 py-5 backdrop-blur-sm sm:px-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="font-medium text-primary">Dashboard</span>
-                <ChevronRight className="h-4 w-4" />
-                <span className="font-semibold text-foreground">Overview</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <SidebarTrigger />
-              </div>
+            <div className="flex items-center justify-end">
+              <SidebarTrigger />
             </div>
           </div>
 
