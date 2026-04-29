@@ -88,3 +88,53 @@ Only on prompt was asked
 Co Pilot did nothing to hinder what was done in Activity 1. I learned that I
 need to be very specific with what I want the AI to create and what I want
 it to replace.
+
+## Activity 3: Server-Side Data with Supabase
+
+### Prompt 1
+
+**What I asked:**
+
+>
+Using the Supabase client at src/lib/supabase.ts, create a new Server Component
+at src/app/projects/page.tsx that:
+
+1. Fetches all records from the "projects" table in Supabase
+2. Displays them in a professional layout using shadcn/ui Card components
+   (run `npx shadcn@latest add card` if needed)
+3. Each card should show the project title, description, and a status badge
+4. The status badge should be color-coded:
+   - "active" = green
+   - "completed" = blue
+   - "archived" = gray
+
+Use @workspace context to match the styling of our existing Dashboard.
+This must be a React Server Component (async function, no "use client").
+Do NOT use useEffect or useState for data fetching.
+
+**What happened:**
+
+>
+Co-Pilot executed this prompt correctly and made all the correct edits to the code.
+
+### Prompt 2
+
+**What I asked:**
+
+>
+The breadcrumb in src/app/layout.tsx always shows "Overview" because the page
+name is hardcoded. Extract the breadcrumb into its own client component at
+src/components/breadcrumb-nav.tsx that uses usePathname() from next/navigation
+to display the correct page name. Map "/" to "Overview", "/projects" to
+"Projects", and "/settings" to "Settings". Keep "ITDEV-164" as the first
+breadcrumb segment. Then update layout.tsx to use the new component.
+
+**What happened:**
+
+> 
+Co-Pilot executed the prompt correctly and edited the code with no problems or issues.
+
+### Reflection
+
+> 
+I like the server side data fetching over the UseEffect from web prog 1. It feels faster and easier to update and use. This could also just be because of Supabase.
