@@ -40,3 +40,51 @@ and it helped a lot with diagnosing the issue as well as resolving it
 while explaining at the same time. It didn't suprise me at all since I've
 used it before. I don't think theres anything I would do differently.
 
+## Activity 2: Building the Dashboard Shell
+
+### Prompt 1
+
+**What I asked:**
+
+>
+Using the shadcn sidebar components that are now in my src/components/ui/ folder,
+create a professional, collapsible dashboard layout. It should include:
+
+A sidebar (src/components/app-sidebar.tsx) with navigation links for:
+
+Overview (use the Home icon from lucide-react)
+Projects (use the FolderOpen icon)
+Settings (use the Settings icon)
+A top navigation area with breadcrumbs showing the current page.
+
+A main content area that wraps the existing page content.
+
+Update src/app/layout.tsx to use the new SidebarProvider and sidebar layout.
+
+Important: Preserve the Developer Profile content from Activity 1 in
+src/app/page.tsx — it should appear in the main content area of the new layout.
+Keep the dark mode toggle working.
+
+**What happened:**
+
+> 
+Co Pilot started with the first step then went in order. It did everything correctly
+and there was no error with the code made.
+### Prompt 2
+
+**What I asked:**
+
+>
+Only one prompt was asked.
+
+**What happened:**
+
+> 
+Only on prompt was asked
+
+### Reflection
+
+>
+Co Pilot did nothing to hinder what was done in Activity 1. I learned that I
+need to be very specific with what I want the AI to create and what I want
+it to replace.
