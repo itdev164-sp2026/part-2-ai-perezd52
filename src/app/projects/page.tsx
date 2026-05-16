@@ -1,4 +1,8 @@
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import {
+  Button,
+} from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -43,12 +47,17 @@ export default async function ProjectsPage() {
 
   return (
     <div className="space-y-8">
-      <header className="space-y-3">
-        <div className="space-y-1">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-primary">
-            Dashboard
-          </p>
-          <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+      <header className="space-y-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-1">
+            <p className="text-sm font-medium uppercase tracking-[0.3em] text-primary">
+              Dashboard
+            </p>
+            <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+          </div>
+          <Button asChild>
+            <Link href="/projects/new">New Project</Link>
+          </Button>
         </div>
         <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
           A professional overview of your project portfolio, with status badges and concise summaries.
