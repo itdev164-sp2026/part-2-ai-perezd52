@@ -206,3 +206,73 @@ any longer than any other response.
 Made me think that the forms are easier now especially with the AI.
 AI is making me realize more and more that you just need the correct prompt 
 to generate what you want.
+
+## Activity 5: Securing the App with Supabase Auth
+
+### Prompt 1
+
+**What I asked:**
+
+>
+Implement a complete email/password authentication flow for this Next.js 15
+App Router project using @supabase/ssr. Here is what I need:
+
+1. SUPABASE CLIENTS: Create server-side Supabase client utilities in
+   src/lib/supabase/ that work correctly with Next.js cookies. I need
+   separate clients for Server Components, Server Actions, and Middleware.
+
+2. LOGIN PAGE: Create a page at src/app/(auth)/login/page.tsx with a
+   shadcn/ui card-based login form. It should support both "Sign In"
+   and "Sign Up" (toggle between them or use tabs). Handle the auth
+   via Server Actions, not client-side fetch.
+
+3. MIDDLEWARE: Create a middleware.ts file at src/middleware.ts (next to
+   the app directory — Next.js looks for middleware as a sibling of app)
+   that:
+   - Refreshes the user's auth session on every request
+   - Protects the /projects routes — redirect unauthenticated users to /login
+   - Allows unauthenticated access to /login
+   - Uses supabase.auth.getUser() (NOT getSession()) for verification
+
+4. SIGN OUT: Add a "Sign Out" button to the existing sidebar component
+   (src/components/app-sidebar.tsx) that calls a Server Action to sign
+   the user out and redirect to /login. The button must only render
+   when an authenticated user is present — pass the user as a prop from
+   the root layout (which will need to fetch it via the server Supabase
+   client) and gate the Sign Out UI on that prop.
+
+5. UPDATE DATA QUERIES: Modify the projects page and the create-project
+   Server Action to use the authenticated Supabase client so that RLS
+   policies filter data per user.
+
+Use @workspace to understand the existing project structure. Do not remove
+or break existing functionality — integrate auth around it.
+
+**What happened:**
+
+> 
+The agent did exaclty as the prompt says. When laid out step by step there is little
+room for error with the agent I have noticed.
+
+### Prompt 2
+
+**What I asked:**
+
+> 
+The middleware is using supabase.auth.getSession() to check authentication.
+This is insecure because it trusts the local cookie without server verification.
+Replace it with supabase.auth.getUser(), which re-validates the user token
+with the Supabase Auth server on every request.
+
+**What happened:**
+
+>
+I learned that becuase of security I should not use getSession() rather I should
+use getUser().
+
+### Reflection
+
+> 
+This assignment went well as did the others. I only had one issue with errors after 
+an agent generation of code. I just put the error into the agent and it gave me the fix for it.
+By the end my code was all correct.

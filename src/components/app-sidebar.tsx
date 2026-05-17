@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import { signOut } from "@/app/actions";
 import { FolderOpen, Home, Settings } from "lucide-react";
 import {
   Sidebar,
@@ -18,9 +19,10 @@ import {
 
 interface AppSidebarProps {
   children: React.ReactNode;
+  user?: { id: string; email?: string | null } | null;
 }
 
-export function AppSidebar({ children }: AppSidebarProps) {
+export function AppSidebar({ children, user }: AppSidebarProps) {
   return (
     <SidebarProvider defaultOpen>
       <div className="flex min-h-[calc(100vh-4rem)] overflow-hidden rounded-3xl border border-border bg-background shadow-sm">
@@ -70,6 +72,15 @@ export function AppSidebar({ children }: AppSidebarProps) {
             <p className="text-xs text-muted-foreground">
               Collapsible dashboard navigation for your profile.
             </p>
+            {user && (
+              <div className="mt-3">
+                <form action={signOut}>
+                  <button type="submit" className="w-full rounded-md bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
+                    Sign Out
+                  </button>
+                </form>
+              </div>
+            )}
           </SidebarFooter>
         </Sidebar>
 
