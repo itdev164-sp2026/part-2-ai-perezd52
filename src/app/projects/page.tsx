@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { createServerComponentSupabase } from "@/lib/supabase/server-component-client";
 import {
   Button,
 } from "@/components/ui/button";
@@ -29,9 +29,14 @@ function getStatusClass(status: string) {
 }
 
 export default async function ProjectsPage() {
+  const supabase = createServerComponentSupabase();
+  const userRes = await supabase.auth.getUser();
+  const user = userRes.data.user;
+
   const { data: projects, error } = await supabase
     .from<Project>("projects")
     .select("id,title,description,status")
+    .eq("user_id", user?.id ?? null)
     .order("title", { ascending: true });
 
   if (error) {
@@ -65,7 +70,7 @@ export default async function ProjectsPage() {
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {projects?.map((project) => (
+        {projects?.map((project: Project) => (
           <Card key={project.id}>
             <CardHeader>
               <CardTitle>{project.title}</CardTitle>

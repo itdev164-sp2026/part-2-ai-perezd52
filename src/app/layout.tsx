@@ -3,6 +3,7 @@ import { Inter, Geist } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { AppSidebar } from "@/components/app-sidebar";
+import { createServerComponentSupabase } from "@/lib/supabase/server-component-client";
 import { BreadcrumbNav } from "@/components/breadcrumb-nav";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -19,11 +20,11 @@ export const metadata: Metadata = {
   description: "AI-native web development with Next.js, Tailwind, and Supabase",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const supabase = createServerComponentSupabase();
+  const { data } = await supabase.auth.getUser();
+  const user = data.user ?? null;
+
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className={`${inter.variable} font-sans antialiased`}>
@@ -36,7 +37,7 @@ export default function RootLayout({
           <Header />
           <div className="mx-auto max-w-7xl px-4 py-8 space-y-4">
             <BreadcrumbNav />
-            <AppSidebar>{children}</AppSidebar>
+            <AppSidebar user={user}>{children}</AppSidebar>
           </div>
         </ThemeProvider>
       </body>
